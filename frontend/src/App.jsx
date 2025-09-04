@@ -1,12 +1,24 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Navbar from "./components/Navbar";
 import HealthCheck from "./components/HealthCheck";
 import LoopbackTest from "./components/LoopbackTest";
 import RegisterAccount from "./components/RegisterAccount";
 import Login from "./components/Login";
 import AuthCheck from "./components/AuthCheck";
+import axios from "axios";
 
 const App = () => {
+  useEffect(() => {
+    const getCsrfCookie = async () => {
+      await axios.get(
+        "https://unique-suited-albacore.ngrok-free.app/sanctum/csrf-cookie",
+        { withCredentials: true }
+      );
+    };
+
+    getCsrfCookie();
+  }, []);
+
   return (
     <>
       <div className="min-h-screen flex flex-col">
