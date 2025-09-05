@@ -7,6 +7,10 @@ import Login from "./components/Login";
 import AuthCheck from "./components/AuthCheck";
 import axios from "axios";
 
+axios.defaults.withCredentials = true;
+axios.defaults.xsrfCookieName = "XSRF-TOKEN";
+axios.defaults.xsrfHeaderName = "X-XSRF-TOKEN";
+
 const App = () => {
   useEffect(() => {
     const getCsrfCookie = async () => {
